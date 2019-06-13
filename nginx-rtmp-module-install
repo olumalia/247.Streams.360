@@ -1,0 +1,55 @@
+sudo apt-get install build-essential libpcre3 libpcre3-dev libssl-dev unzip
+
+mkdir nginx
+
+cd nginx
+
+wget http://nginx.org/download/nginx-1.8.1.tar.gz
+
+tar -zxvf nginx-1.8.1.tar.gz
+
+wget https://github.com/arut/nginx-rtmp-module/archive/master.zip
+
+unzip master.zip
+
+cd nginx-1.8.1
+
+./configure --with-http_ssl_module --add-module=../nginx-rtmp-module-master
+
+make
+
+sudo make install
+
+sudo /usr/local/nginx/sbin/nginx
+
+sudo /usr/local/nginx/sbin/nginx -s stop
+
+sudo nano /usr/local/nginx/conf/nginx.conf
+
+
+
+rtmp {
+
+    server {
+
+        listen 1234;
+
+        chunk_size 8192;
+
+        application vod {
+
+            play /usr/local/nginx/rtmp;
+
+        }
+
+    }
+
+}
+
+sudo mkdir /usr/local/nginx/rtmp
+
+sudo /usr/local/nginx/sbin/nginx
+
+rtmp://serverip:1234/vod/
+
+ufw allow 1234
