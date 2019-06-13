@@ -51,3 +51,22 @@ sudo apt-get install iptables-persistent
 sudo sh -c "iptables-save > /etc/iptables/rules.v4"
 
 Thats it, now open a browser and navigate to your IP and make a user and login .
+
+mp4 files can be added to the streams folder 
+
+/usr/local/antmedia/webapps/LiveApp/streams or
+
+/usr/local/antmedia/webapps/WebRTCApp/streams
+
+Streams can be played in vlc etc by using 
+
+http://serverip/LiveApp/streams/filename.mp4 for VOD
+
+or 
+
+http://serverip/LiveApp/streams/filename.m3u8 for Live Streams 
+
+
+
+
+
